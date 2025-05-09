@@ -1,0 +1,53 @@
+# macOS
+.DS_Store
+
+# Build Folders
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# Rider IDE
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Logs
+logs/
+*.log
+
+# User-specific files
+*.swp
+*.swo
+*.sln.iml
+
+# NuGet
+*.nupkg
+*.snupkg
+
+# Entity Framework
+Migrations/
+
+# Temporary Files
+*.tmp
+~*
+*.bak
+*.cache
+
+# JetBrains Rider
+.idea/
+*.iml
+
+# Local environment
+.env
+
+# Resharper
+*.DotSettings.user
