@@ -1,6 +1,7 @@
 using bra_reint_API.Models;
 using bra_reint_API.Models.ViewModel;
 using bra_reint_API.Services.PostalCodeServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bra_reint_API.Controllers;
@@ -24,6 +25,7 @@ public class PostalCodeController(IPostalCodeService service) : Controller
     }
     
     // CREATE
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult> Create([FromBody] GetPostalCodeViewModel postalCode)
     {
@@ -43,6 +45,7 @@ public class PostalCodeController(IPostalCodeService service) : Controller
     }
     
     // DELETE
+    [Authorize]
     [HttpDelete("{code}")]
     public async Task<ActionResult> Delete(string code)
     {

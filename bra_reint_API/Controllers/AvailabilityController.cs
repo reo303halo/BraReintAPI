@@ -1,5 +1,6 @@
 using bra_reint_API.Models;
 using bra_reint_API.Services.BookingServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bra_reint_API.Controllers;
@@ -24,6 +25,7 @@ public class AvailabilityController(IBookingService bookingService) : Controller
         return Ok(dates);
     }
 
+    [Authorize]
     [HttpPost("special-date")]
     public async Task<ActionResult<SpecialAvailabilityDate>> AddOrUpdateSpecialDate([FromBody] SpecialAvailabilityDate specialDate)
     {

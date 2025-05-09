@@ -1,6 +1,7 @@
 using bra_reint_API.Models;
 using bra_reint_API.Models.ViewModel;
 using bra_reint_API.Services.BookingTypeServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bra_reint_API.Controllers;
@@ -47,6 +48,7 @@ public class BookingTypeController(IBookingTypeService service) : ControllerBase
     }
     
     // CREATE
+    [Authorize]
     [HttpPost]
     public async Task<ActionResult<GetBookingTypeViewModel>> Create([FromBody] CreateBookingTypeViewModel model)
     {
@@ -67,6 +69,7 @@ public class BookingTypeController(IBookingTypeService service) : ControllerBase
     }
     
     // DELETE
+    [Authorize]
     [HttpDelete("{id:int}")]
     public async Task<ActionResult> Delete(int id)
     {
