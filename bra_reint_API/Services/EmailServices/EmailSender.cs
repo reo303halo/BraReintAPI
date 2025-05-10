@@ -7,7 +7,7 @@ namespace bra_reint_API.Services.EmailServices;
 public class EmailSender : IEmailSender
 {
     private const string SmtpEmail = "no-reply@brareint.no";
-    private const string AdminEmail = "roy-eo@hotmail.com"; // "post@brareint.no";
+    private const string AdminEmail = "post@brareint.no";
     private const string SmtpHost = "smtp.domeneshop.no";
     private const int SmtpPort = 587;
 
