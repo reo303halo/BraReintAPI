@@ -24,7 +24,7 @@ public class EmailSender : IEmailSender
         client.EnableSsl = true;
         client.UseDefaultCredentials = false;
         client.Credentials = new NetworkCredential(SmtpEmail, smtpPassword);
-
+        
         // Customer email
         var customerEmail = new MailMessage
         {
@@ -34,7 +34,20 @@ public class EmailSender : IEmailSender
             Body = BuildCustomerEmailBody(booking, bookingTypes, city, totalPrice)
         };
         customerEmail.To.Add(booking.Email);
-        await client.SendMailAsync(customerEmail);
+        try
+        {
+            await client.SendMailAsync(customerEmail);
+        }
+        catch (SmtpFailedRecipientException ex)
+        {
+            Console.WriteLine($"SMTP Error: {ex.StatusCode} - {ex.FailedRecipient}");
+            Console.WriteLine($"Full Exception: {ex}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Unexpected Error: {ex.Message}");
+        }
+
 
         // Admin notification email
         var adminEmail = new MailMessage
@@ -45,7 +58,19 @@ public class EmailSender : IEmailSender
             Body = BuildAdminEmailBody(booking, bookingTypes, city, totalPrice)
         };
         adminEmail.To.Add(AdminEmail);
-        await client.SendMailAsync(adminEmail);
+        try
+        {
+            await client.SendMailAsync(adminEmail);
+        }
+        catch (SmtpFailedRecipientException ex)
+        {
+            Console.WriteLine($"SMTP Error: {ex.StatusCode} - {ex.FailedRecipient}");
+            Console.WriteLine($"Full Exception: {ex}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Unexpected Error: {ex.Message}");
+        }
     }
 
     private static string BuildCustomerEmailBody(CreateBookingViewModel booking, List<string> bookingTypes, string city, decimal totalPrice)
