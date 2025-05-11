@@ -14,14 +14,12 @@ public class EmailSender : IEmailSender
     public async Task SendEmail(CreateBookingViewModel booking, List<string> bookingTypes, string city,
         decimal totalPrice)
     {
-        var smtpPassword = "47-pode-dv-faren-Nito";
-        /*
-        Environment.GetEnvironmentVariable("SMTP_PASSWORD");
+        var smtpPassword = Environment.GetEnvironmentVariable("SMTP_PASSWORD");
         if (string.IsNullOrEmpty(smtpPassword))
         {
             throw new InvalidOperationException("SMTP password is not configured.");
         }
-        */
+        
 
         using var client = new SmtpClient(SmtpHost, SmtpPort);
         client.EnableSsl = true;
